@@ -1,3 +1,4 @@
+// biome-ignore lint/style/useImportType: <explanation>
 import { DataTypes, Model, Optional } from "sequelize";
 import { sequelize } from "../config/database";
 

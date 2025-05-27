@@ -1,17 +1,22 @@
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
-import React from "react";
+// import React from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import TaskForm from "../components/TaskForm";
+import api from "../config/axios";
 
 const AddTask: React.FC = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (title: string) => {
-    await axios.post("/api/tasks", { title, completed: false });
-    toast.success("Tâche créée avec succès");
-    navigate("/");
+    try {
+      await api.post("/api/tasks", { title, completed: false });
+      toast.success("Tâche créée avec succès");
+      navigate("/");
+    } catch (error) {
+      toast.error("Erreur lors de la création de la tâche");
+      console.error("Error creating task:", error);
+    }
   };
 
   return (

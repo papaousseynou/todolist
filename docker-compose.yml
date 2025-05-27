@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   frontend:
@@ -13,10 +13,12 @@ services:
 
   backend:
     build:
-      context: ../backend
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
+      - PORT=5000
       - DB_HOST=db
       - DB_USER=root
       - DB_PASSWORD=rootpassword

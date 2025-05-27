@@ -1,20 +1,23 @@
-# Étape 1 : Utilisation de l'image de base Node.js
+# Build stage
 FROM node:18-alpine
 
-# Définir le répertoire de travail
 WORKDIR /app
 
-# Copier les fichiers package.json et package-lock.json (ou pnpm-lock.yaml si tu utilises pnpm)
+# Copier les fichiers package.json et package-lock.json
 COPY package*.json ./
+COPY pnpm-lock.yaml ./
 
 # Installer les dépendances
-RUN npm install
+RUN npm install -g pnpm && pnpm install
 
 # Copier le reste des fichiers du backend
 COPY . .
+
+# Compiler le TypeScript
+RUN pnpm build
 
 # Exposer le port de l'application backend
 EXPOSE 5000
 
 # Démarrer l'application
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
