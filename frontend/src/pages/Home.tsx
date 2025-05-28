@@ -1,11 +1,12 @@
 import { ArrowPathIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import type React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import EmptyState from "../components/EmptyState";
 import TaskItem from "../components/TaskItem";
-import { Task } from "../types";
+import api from "../config/axios";
+import type { Task } from "../types";
 
 const Home: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -14,7 +15,7 @@ const Home: React.FC = () => {
 
   const loadTasks = useCallback(async () => {
     try {
-      const response = await axios.get<Task[]>("/api/tasks");
+      const response = await api.get<Task[]>("/api/tasks");
       setTasks(response.data);
     } catch (error) {
       toast.error("Erreur lors du chargement des tâches");
@@ -32,7 +33,7 @@ const Home: React.FC = () => {
 
   const handleToggle = async (task: Task) => {
     try {
-      await axios.put(`/api/tasks/${task.id}`, {
+      await api.put(`/api/tasks/${task.id}`, {
         ...task,
         completed: !task.completed,
       });
@@ -45,7 +46,7 @@ const Home: React.FC = () => {
 
   const handleDelete = async (id: number) => {
     try {
-      await axios.delete(`/api/tasks/${id}`);
+      await api.delete(`/api/tasks/${id}`);
       setTasks(tasks.filter((t) => t.id !== id));
     } catch (error) {
       toast.error("Erreur lors de la suppression de la tâche");
@@ -58,17 +59,18 @@ const Home: React.FC = () => {
   }, [loadTasks]);
 
   return (
-    <div className="max-w-2xl px-4 pb-20 mx-auto">
-      <div className="flex items-center justify-between mb-6">
+    <div className="px-4 pb-20 mx-auto max-w-2xl">
+      <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
           Mes Tâches
         </h2>
 
-        <div className="flex items-center gap-2">
+        <div className="flex gap-2 items-center">
           <button
+            type="button"
             onClick={handleRefresh}
             disabled={isRefreshing}
-            className="p-2 text-gray-500 transition-colors rounded-full hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50"
+            className="p-2 text-gray-500 rounded-full transition-colors hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50"
             aria-label="Rafraîchir la liste"
           >
             <ArrowPathIcon
@@ -78,7 +80,7 @@ const Home: React.FC = () => {
 
           <Link
             to="/add"
-            className="inline-flex items-center gap-2 px-4 py-2 text-white transition-colors bg-indigo-600 rounded-lg shadow-sm hover:bg-indigo-700"
+            className="inline-flex gap-2 items-center px-4 py-2 text-white bg-indigo-600 rounded-lg shadow-sm transition-colors hover:bg-indigo-700"
           >
             <PlusCircleIcon className="w-5 h-5" />
             <span>Nouvelle tâche</span>
@@ -88,12 +90,12 @@ const Home: React.FC = () => {
 
       {isLoading ? (
         <div className="flex justify-center py-12">
-          <div className="flex flex-col w-full space-y-4 animate-pulse">
+          <div className="flex flex-col space-y-4 w-full animate-pulse">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="h-20 bg-gray-200 dark:bg-gray-700 rounded-xl"
-              ></div>
+                className="h-20 bg-gray-200 rounded-xl dark:bg-gray-700"
+              />
             ))}
           </div>
         </div>

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 #######################docker-compose.yml #############
+=======
+>>>>>>> d5a502d5e53ce2c63dd8f49a5d875b7e1df05bcd
 version: "3.9"
 
 services:

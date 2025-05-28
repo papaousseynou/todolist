@@ -54,7 +54,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
         </h3>
       </div>
 
-      <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="flex items-center gap-2 transition-opacity">
         <Link
           to={`/edit/${task.id}`}
           className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/50 rounded-lg transition-colors"
