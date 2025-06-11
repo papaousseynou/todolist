@@ -1,5 +1,5 @@
 import { PlusCircle } from "lucide-react";
-import React from "react";
+import type React from "react";
 import { Link } from "react-router-dom";
 
 const EmptyState: React.FC = () => {
@@ -7,7 +7,7 @@ const EmptyState: React.FC = () => {
     <div className="py-12 text-center">
       <div className="mb-4 text-gray-400">
         <svg
-          className="w-12 h-12 mx-auto"
+          className="mx-auto w-12 h-12"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -29,7 +29,7 @@ const EmptyState: React.FC = () => {
       </p>
       <Link
         to="/add"
-        className="inline-flex items-center gap-2 px-4 py-2 text-white transition-colors bg-indigo-600 rounded-lg shadow-sm hover:bg-indigo-700"
+        className="inline-flex gap-2 items-center px-4 py-2 text-white bg-indigo-600 rounded-lg shadow-sm transition-colors hover:bg-indigo-700"
       >
         <PlusCircle size={18} />
         <span>Nouvelle tâche</span>

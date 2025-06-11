@@ -1,5 +1,6 @@
-import { MoonIcon, SunIcon } from "@heroicons/react/24/outline"; // Make sure heroicons are installed
-import React, { useEffect, useState } from "react";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/outline";
+import type React from "react";
+import { useEffect, useState } from "react";
 
 const ThemeToggle: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
@@ -33,8 +34,9 @@ const ThemeToggle: React.FC = () => {
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
-      className="p-2 transition-colors bg-gray-200 rounded-lg dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
+      className="p-2 bg-gray-200 rounded-lg transition-colors dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600"
       aria-label="Toggle theme"
     >
       {isDark ? (

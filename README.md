@@ -167,7 +167,10 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👥 Auteur
 
-]
+Papa Ousseynou DIOUF
+Khadidja Boye
+Thierno Aliou BA
+Serigne Fallou SECK
 
 ## 🙏 Remerciements
 
