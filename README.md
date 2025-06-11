@@ -41,7 +41,7 @@ CREATE DATABASE todolist;
 
 ```env
 DB_HOST=localhost
-DB_USER=
+DB_USER=root
 DB_PASS=
 DB_NAME=todolist
 PORT=3000
