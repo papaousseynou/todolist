@@ -1,15 +1,21 @@
+<<<<<<< HEAD
+#######################docker-compose.yml #############
+=======
+>>>>>>> d5a502d5e53ce2c63dd8f49a5d875b7e1df05bcd
 version: "3.9"
 
 services:
   frontend:
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
+    container_name: frontend
     ports:
       - "3000:80"
     depends_on:
       - backend
     restart: always
+
 
   backend:
     build:
@@ -40,3 +46,4 @@ services:
 
 volumes:
   db_data:
+

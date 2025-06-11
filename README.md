@@ -41,7 +41,7 @@ CREATE DATABASE todolist;
 
 ```env
 DB_HOST=localhost
-DB_USER=
+DB_USER=root
 DB_PASS=
 DB_NAME=todolist
 PORT=3000
@@ -167,7 +167,10 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👥 Auteur
 
-]
+Papa Ousseynou DIOUF
+Khadidja Boye
+Thierno Aliou BA
+Serigne Fallou SECK
 
 ## 🙏 Remerciements
 

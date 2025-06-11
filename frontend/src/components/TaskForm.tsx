@@ -1,5 +1,6 @@
 import { CheckIcon } from "@heroicons/react/24/outline";
-import React, { useEffect, useState } from "react";
+import type React from "react";
+import { useEffect, useState } from "react";
 
 interface TaskFormProps {
   initialValue?: string;
@@ -50,9 +51,9 @@ const TaskForm: React.FC<TaskFormProps> = ({
   };
 
   return (
-    <div className="w-full max-w-md p-6 mx-auto bg-white rounded-xl shadow-sm dark:bg-gray-800">
-      <div className="flex items-center gap-3 mb-6">
-        <span className="flex items-center justify-center w-10 h-10 bg-indigo-100 rounded-full dark:bg-indigo-900">
+    <div className="p-6 mx-auto w-full max-w-md bg-white rounded-xl shadow-sm dark:bg-gray-800">
+      <div className="flex gap-3 items-center mb-6">
+        <span className="flex justify-center items-center w-10 h-10 bg-indigo-100 rounded-full dark:bg-indigo-900">
           {icon}
         </span>
         <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
@@ -74,7 +75,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
             value={taskTitle}
             onChange={(e) => setTaskTitle(e.target.value)}
             placeholder="Entrez le titre de votre tâche"
-            className="w-full p-3 transition-all border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            className="p-3 w-full rounded-lg border border-gray-300 transition-all outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             required
             disabled={isSubmitting}
           />
@@ -87,13 +88,13 @@ const TaskForm: React.FC<TaskFormProps> = ({
             flex items-center justify-center w-full px-4 py-3 font-medium text-white transition-all duration-200 rounded-lg
             focus:outline-none focus:ring-2 focus:ring-offset-2
             ${buttonColorClasses[submitButtonColor]}
-            ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}
-          `}
+            ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
         >
           {isSubmitting ? (
             <span className="flex items-center">
+              {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
               <svg
-                className="w-4 h-4 mr-2 -ml-1 text-white animate-spin"
+                className="mr-2 -ml-1 w-4 h-4 text-white animate-spin"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -105,18 +106,18 @@ const TaskForm: React.FC<TaskFormProps> = ({
                   r="10"
                   stroke="currentColor"
                   strokeWidth="4"
-                ></circle>
+                />
                 <path
                   className="opacity-75"
                   fill="currentColor"
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
+                />
               </svg>
               Traitement...
             </span>
           ) : showSuccess ? (
             <span className="flex items-center">
-              <CheckIcon className="w-5 h-5 mr-1" />
+              <CheckIcon className="mr-1 w-5 h-5" />
               Succès!
             </span>
           ) : (
